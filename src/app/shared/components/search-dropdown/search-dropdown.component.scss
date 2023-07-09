@@ -1,0 +1,29 @@
+.search_dropdown {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+
+  &__title {
+    width: 90px;
+  }
+
+  &__select {
+    width: 200px;
+  }
+
+  &__option {
+  }
+
+  &__arrow {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: "";
+    background: white;
+  }
+}
+
+.imagen {
+  background-color: red;
+}

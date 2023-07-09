@@ -1,0 +1,31 @@
+<div class="search_dropdown">
+  <h4 class="search_dropdown__title">
+    {{ searchLabel }}
+  </h4>
+
+  <select
+    class="form-select search_dropdown__select"
+    aria-label="Default select example"
+    #dataVal
+    (change)="selectedValue(dataVal.value)"
+    [disabled]="searchLabel === 'Capital'"
+    [class.search_dropdown__arrow]="searchLabel === 'Capital'"
+  >
+    <option
+      selected
+      disabled
+      hidden
+      *ngIf="searchLabel === 'Country'"
+      class="search_dropdown__placeholder"
+    >
+      Select a Country
+    </option>
+    <option
+      *ngFor="let country of countriesNames"
+      [value]="country"
+      class="search_dropdown__option"
+    >
+      {{ country }}
+    </option>
+  </select>
+</div>

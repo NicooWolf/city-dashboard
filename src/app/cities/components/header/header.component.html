@@ -1,0 +1,13 @@
+<div class="header">
+  <shared-search-dropdown
+    searchLabel="Country"
+    [countriesNames]="countriesNames"
+    [countryFlag]="countryFlag"
+    [countriesFlags]="countriesFlags"
+    (emitCapitalValue)="getCapitalValue($event)"
+  ></shared-search-dropdown>
+  <shared-search-dropdown
+    searchLabel="Capital"
+    [countriesNames]="selectedCapital"
+  ></shared-search-dropdown>
+</div>

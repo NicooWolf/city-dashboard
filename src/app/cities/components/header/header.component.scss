@@ -1,0 +1,18 @@
+@import "../../../../mixin.scss";
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 20px;
+  height: 80px;
+  background-color: color(secondary);
+}
+
+@media (max-width: 860px) {
+  .header {
+    height: 100px;
+    flex-direction: column;
+  }
+}
