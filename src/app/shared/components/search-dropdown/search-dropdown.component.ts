@@ -30,7 +30,5 @@ export class SearchDropdownComponent {
     const values: Store = { countryName: val, isLoading: true };
 
     this.emitCapitalValue.emit(values);
-    console.log('flag desde search', this.countryFlag);
-    console.log('flagssssssss desde search', this.countriesFlags);
   }
 }

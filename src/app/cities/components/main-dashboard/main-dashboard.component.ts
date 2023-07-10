@@ -30,20 +30,6 @@ export class MainDashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getUpdatedStore();
-    console.log('inicio el componente');
-    const localStore = localStorage.getItem('store');
-    console.log(JSON.parse(<string>localStore), 'local!');
-    if (localStore) {
-      this.store = JSON.parse(localStore);
-      console.log('hay local', this.store);
-      this.weatherData = this.store.weatherInfo;
-      this.timeData = this.store.countryTime;
-      this.holidaysData = this.store.countryHolidays;
-      this.daysToHoliday = this.store.daysToHoliday;
-      this.nextCountryHoliday = this.store.nextCountryHoliday;
-      this.countryFlag = this.store.countryFlag;
-      this.capitalInfo = this.store.countryCapital;
-    }
   }
 
   ngOnDestroy(): void {
@@ -55,7 +41,6 @@ export class MainDashboardComponent implements OnInit, OnDestroy {
       .pipe(
         tap((store: Store) => {
           const propertyCount = Object.keys(store).length;
-          console.log(propertyCount);
           if (propertyCount === 11) {
             this.isLoading = false;
             localStorage.setItem('store', JSON.stringify(store));
@@ -79,6 +64,20 @@ export class MainDashboardComponent implements OnInit, OnDestroy {
   killStoreSubscription(): void {
     if (this.storeSubscription) {
       this.storeSubscription.unsubscribe();
+    }
+  }
+
+  getLocalStoreData(): void {
+    const localStore = localStorage.getItem('store');
+    if (localStore) {
+      this.store = JSON.parse(localStore);
+      this.weatherData = this.store.weatherInfo;
+      this.timeData = this.store.countryTime;
+      this.holidaysData = this.store.countryHolidays;
+      this.daysToHoliday = this.store.daysToHoliday;
+      this.nextCountryHoliday = this.store.nextCountryHoliday;
+      this.countryFlag = this.store.countryFlag;
+      this.capitalInfo = this.store.countryCapital;
     }
   }
 }

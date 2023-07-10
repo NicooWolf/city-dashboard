@@ -27,10 +27,7 @@ export class CitiesService {
   getAllCountries(): Observable<Country[]> {
     const url = `${this.countriesApiUrl}/all`;
 
-    return this.http.get<Country[]>(url).pipe(
-      tap((countries) => console.log(countries)),
-      catchError((err) => of([]))
-    );
+    return this.http.get<Country[]>(url).pipe(catchError((err) => of([])));
   }
 
   getCapital(country: string): Observable<Country[]> {
@@ -41,10 +38,9 @@ export class CitiesService {
   getLocalTime(country: string, capital: string): Observable<TimeZone> {
     const url = `${this.timezoneApiUrl}/current_time/?api_key=${this.timezoneApiKey}&location=${capital}, ${country}`;
 
-    return this.http.get<TimeZone>(url).pipe(
-      tap((weather) => console.log(weather)),
-      catchError((err) => of(<TimeZone>{}))
-    );
+    return this.http
+      .get<TimeZone>(url)
+      .pipe(catchError((err) => of(<TimeZone>{})));
   }
 
   getCapitalWeather(capital: string, cc2: string): Observable<WeatherInt> {
@@ -52,7 +48,6 @@ export class CitiesService {
 
     return this.http.get<WeatherInt>(url).pipe(
       delay(1000),
-      tap((weather) => console.log(weather)),
       catchError((err) => of(<WeatherInt>{}))
     );
   }
@@ -62,10 +57,7 @@ export class CitiesService {
 
     return this.http
       .get<Holidays[]>(url, { headers: { 'X-Api-Key': this.holidaysApiKey } })
-      .pipe(
-        tap((holidays) => console.log(holidays)),
-        catchError((err) => of([]))
-      );
+      .pipe(catchError((err) => of([])));
   }
 
   getCountryFlag(
