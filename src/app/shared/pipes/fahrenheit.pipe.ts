@@ -4,12 +4,13 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'fahrenheit',
 })
 export class FahrenheitPipe implements PipeTransform {
-  transform(value: number | undefined) {
+  transform(value: number | string) {
     if (value === null) {
-      return (value = undefined);
+      return (value = 'No Data');
     } else {
       return value !== undefined
-        ? ((value - 273.15) * (9 / 5) + 32).toFixed(2).toString() + ' °F'
+        ? ((<number>value - 273.15) * (9 / 5) + 32).toFixed(2).toString() +
+            ' °F'
         : '';
     }
   }

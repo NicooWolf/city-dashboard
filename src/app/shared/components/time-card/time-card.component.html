@@ -1,0 +1,21 @@
+<div *ngIf="showSpinner else timeCardContent">
+    <div class="spinner flex align-items-center justify-content-center h-15rem">
+        <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="4" animationDuration=".5s" aria-label="Loading" />
+    </div>
+</div>
+
+<ng-template #timeCardContent>
+    <div *ngIf="displayTimeCard" class="time-card {{isDay ? 'day' : 'night'}} bg-cover bg-center h-full">
+        <div class="time-card-wrapper h-full flex flex-column align-items-center justify-content-center">
+            <div class="flex align-items-center justify-content-center gap-3 mb-2 w-full">
+                <shared-date-card [capitalTimeDayData]="capitalTimeDayData" [datePipeProps]="['dd', 'EEEE']"
+                    [timeClassProps]="{timeClass: 'day'}" />
+                <shared-date-card [capitalTimeDayData]="capitalTimeDayData" [datePipeProps]="['MMMM', 'yyyy']"
+                    [timeClassProps]="{timeClass: 'month', props: 'flex align-items-center justify-content-center'}" />
+            </div>
+            <shared-date-card [hasParagraph]="false" [capitalTimeDayData]="capitalTimeDayData"
+                [datePipeProps]="['h:mm:ss a']"
+                [timeClassProps]="{timeClass: 'hours', props: 'flex align-items-center justify-content-center'}" />
+        </div>
+    </div>
+</ng-template>

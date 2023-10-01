@@ -4,12 +4,12 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'celsius',
 })
 export class CelsiusPipe implements PipeTransform {
-  transform(value: number | undefined): string {
+  transform(value: number | string): string {
     if (value === null) {
-      return value;
+      return (value = 'No Data');
     } else {
       return value !== undefined
-        ? (value - 273.15).toFixed(2).toString() + ' °C'
+        ? (<number>value - 273.15).toFixed(2).toString() + ' °C'
         : '';
     }
   }

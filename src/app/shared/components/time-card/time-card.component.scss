@@ -1,0 +1,42 @@
+@import "/src/mixin.scss";
+
+.time-card {
+  border-radius: 24px;
+  padding: 20px;
+
+  &.day {
+    background: url("../../../../assets/images/timeCard\ day\ background.jpg");
+  }
+
+  &.night {
+    background: url("../../../../assets/images/timeCard\ night\ background.jpg");
+  }
+}
+
+shared-date-card {
+  width: 100%;
+}
+
+:host ::ng-deep {
+  .p-progress-spinner-circle {
+    stroke: color(primary-dark);
+  }
+  .p-progress-spinner-circle {
+    animation: p-progress-spinner-dash 1.5s ease-in-out infinite,
+      p-progress-spinner-color 6s ease-in-out infinite;
+  }
+}
+
+@keyframes p-progress-spinner-color {
+  100% {
+    stroke: color(primary-dark);
+  }
+
+  50% {
+    stroke: color(primary);
+  }
+
+  25% {
+    stroke: color(primary-light);
+  }
+}

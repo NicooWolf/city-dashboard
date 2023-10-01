@@ -1,0 +1,17 @@
+<div class="flex justify-content-center">
+    <p-dropdown [options]="countriesNames" optionLabel="name" placeholder="Select a Country"
+        [(ngModel)]="selectedCountry" (onChange)="handleCountryValue(selectedCountry)" [filter]="true">
+        <ng-template pTemplate="selectedItem">
+            <div class="flex align-items-center gap-2" *ngIf="selectedCountry">
+                <img [src]="selectedCountry.flag" class="flag" style="width: 18px" />
+                <div>{{ selectedCountry.formattedName }}</div>
+            </div>
+        </ng-template>
+        <ng-template let-country pTemplate="item">
+            <div class="flex align-items-center gap-2">
+                <img [src]="country.flag" class="flag" style="width: 18px" />
+                <div class="max-w-15rem">{{ country.name }}</div>
+            </div>
+        </ng-template>
+    </p-dropdown>
+</div>

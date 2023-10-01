@@ -1,13 +1,10 @@
-<div class="header">
-  <shared-search-dropdown
-    searchLabel="Country"
-    [countriesNames]="countriesNames"
-    [countryFlag]="countryFlag"
-    [countriesFlags]="countriesFlags"
-    (emitCapitalValue)="getCapitalValue($event)"
-  ></shared-search-dropdown>
-  <shared-search-dropdown
-    searchLabel="Capital"
-    [countriesNames]="selectedCapital"
-  ></shared-search-dropdown>
-</div>
+<header class="header" [ngClass]="isHeaderFixed ?'sticky':'not-sticky'" (scroll)="onScroll()">
+  <div class="header-logo">
+    <button type="button" class="header-logo-button" (click)="onScrollToTop()">
+      <img src="../../../../assets/icons/Logo Luna weatherApp.png" alt="Icon Moon">
+    </button>
+  </div>
+  <div class="header-items">
+    <app-country-select (emitCountryValue)="selectedCountry = $event" />
+  </div>
+</header>

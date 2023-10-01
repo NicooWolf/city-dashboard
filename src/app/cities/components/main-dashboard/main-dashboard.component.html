@@ -1,19 +1,26 @@
-<div *ngIf="capitalInfo" class="dashboard__wrapper">
-  <h1 class="dashboard__title">
-    Info for:
-  </h1>
-  <div class="dashboard__capital">
-    <img [src]="countryFlag" alt="{{capitalInfo}}" class="dashboard__flag">
-    <h2 class="dashboard__subtitle">{{capitalInfo}}</h2>
-  </div>
+<article *ngIf="!hasError else errorContent"
+    class="dashboard-container flex flex-column gap-4 justify-content-center pb-5">
+    <section class="dashboard-container-weather h-25rem">
+        <shared-weather-card />
+    </section>
+    <div class="flex gap-4 flex-column lg:flex-row">
+        <div class="flex flex-column gap-4">
+            <section class="dashboard-container-time h-full"><shared-time-card /></section>
+            <section class="dashboard-container-holiday-nearest h-full" *ngIf="showHolidaysCard">
+                <shared-nearest-holiday />
+            </section>
+        </div>
+        <section class="dashboard-container-holidays w-full"><shared-holidays-card /></section>
+    </div>
+</article>
 
-</div>
-<div *ngIf="!isLoading" class="dashboard">
-  <shared-info-card [weatherInfo]="weatherData"></shared-info-card>
-  <shared-info-card [timeInfo]="timeData"></shared-info-card>
-  <shared-info-card [holidaysInfo]="holidaysData" [daysToHoliday]="daysToHoliday"
-    [nextCountryHoliday]="nextCountryHoliday"></shared-info-card>
-</div>
-<div *ngIf="isLoading" class="dashboard">
-  <shared-loading-spinner></shared-loading-spinner>
-</div>
+<ng-template #errorContent>
+    <section class="flex w-full h-full align-items-center justify-content-center">
+        <div
+            class="error-card flex flex-column align-items-center justify-content-center gap-5 text-center bg-white p-5">
+            <h1 class="text-5xl">Unfortunately, the selected country does not have a valid Capital.</h1>
+            <h2 class="text-3xl text-red-500">Data can not be displayed.</h2>
+            <h4 class="text-xl">Please select a new Country.</h4>
+        </div>
+    </section>
+</ng-template>

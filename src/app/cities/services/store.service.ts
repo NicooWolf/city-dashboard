@@ -1,27 +1,37 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Store } from '../interfaces/store.interface';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Store } from '../models/store.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StoreService {
-  private storeSubject: BehaviorSubject<Store> = new BehaviorSubject<Store>({});
-  public store$ = this.storeSubject.asObservable();
+  private initialState = {
+    capitalWeather: { weather: null },
+    capitalTime: { time: null },
+    countryHolidays: { holidays: null },
+    selectedCountry: null,
+  };
 
-  constructor() {}
+  private storeSubject: BehaviorSubject<Store> = new BehaviorSubject<any>(
+    this.initialState
+  );
 
-  get store(): Store {
-    return this.storeSubject.value;
+  private store$: Observable<Store> = this.storeSubject.asObservable();
+
+  public setStoreData(updateData: any) {
+    const updatedData = { ...this.storeSubject.value, ...updateData };
+    this.storeSubject.next(updatedData);
   }
 
-  setStore(updateData: Store | {}): void {
-    const updatedStore = { ...this.store, ...updateData };
-    this.storeSubject.next(updatedStore);
-    console.log('this.store >>> ', updatedStore);
+  public resetStore(resetValues: any) {
+    this.storeSubject = new BehaviorSubject<any>({
+      ...this.initialState,
+      ...resetValues,
+    });
   }
 
-  resetStore(resetValue: Store | {} = {}): void {
-    this.storeSubject.next(resetValue);
+  get getStoreData(): Observable<Store> {
+    return this.store$;
   }
 }

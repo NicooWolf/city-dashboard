@@ -1,0 +1,22 @@
+@import "/src/mixin.scss";
+
+:host ::ng-deep {
+  .p-dropdown {
+    width: 15rem;
+
+    &-header,
+    &-panel {
+      width: 15rem;
+    }
+
+    &:not(.p-disabled) {
+      &.p-focus {
+        box-shadow: none;
+      }
+
+      &:hover {
+        border: 1px solid color(border-light);
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+<div *ngIf="showSpinner else weatherCardContent">
+    <div class="spinner flex align-items-center justify-content-center h-25rem">
+        <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="4" animationDuration=".5s" aria-label="Loading" />
+    </div>
+</div>
+
+<ng-template #weatherCardContent>
+    <div *ngIf="displayWeatherCard" class="weather-card h-full">
+        <div class="weather-card-wrapper h-full">
+            <div
+                class="weather-card-wrapper-content flex-column md:flex-row align-items-center md:align-items-end justify-content-center md:justify-content-between gap-5 md:gap-0 h-full">
+                <div class="weather-card-wrapper-content-left">
+                    <div class="flex md:block align-items-center justify-content-center">
+                        <img [src]="skyStatusConstants[capitalSkyStatus]" alt="Icon {{capitalSkyStatus}}"
+                            class="w-3rem h-3rem">
+                    </div>
+                    <p class="text-5xl md:text-7xl font-bold text-center md:text-left">{{checked ? (capitalTemp |
+                        fahrenheit) :
+                        (capitalTemp |
+                        celsius)}}
+                    </p>
+                    <div class="flex flex-column md:flex-row gap-4 align-items-center mt-2">
+                        <h2 class="text-4xl font-semibold">{{selectedCapital}},
+                            <strong class="text-3xl">{{countryCca2}}</strong>
+                        </h2>
+                        <p-inputSwitch [(ngModel)]="checked" *ngIf="capitalTemp" />
+                    </div>
+                </div>
+                <div class="weather-card-wrapper-content-right">
+                    <h3>{{capitalSkyStatusDesc | titlecase}}</h3>
+                    <h3 class="mt-2">Feels like: {{checked ? (tempFeelsLike | fahrenheit) : (tempFeelsLike |
+                        celsius)}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

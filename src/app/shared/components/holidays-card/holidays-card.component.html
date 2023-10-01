@@ -1,0 +1,50 @@
+<div *ngIf="showSpinner else holidaysCardContent">
+    <div class="spinner flex align-items-center justify-content-center h-25rem">
+        <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="4" animationDuration=".5s" aria-label="Loading" />
+    </div>
+</div>
+
+<ng-template #holidaysCardContent>
+    <div *ngIf="displayHolidaysCard" class="holidays-card h-full bg-white">
+        <div class="holidays-card-wrapper h-full flex flex-column">
+            <h1 class="sm:text-5xl text-2xl text-center">
+                <strong class="sm:text-7xl text-4xl text-gray-400">{{countryName[0]}}</strong>{{countryName.slice(1,
+                countryName.length)}}
+            </h1>
+            <div class="w-full flex flex-column md:flex-row">
+                <div class="holidays-card-title flex align-items-center justify-content-center mb-2 md:mb-0">
+                    <h2 class="sm:text-4xl text-2xl font-bold">HOLIDAYS</h2>
+                </div>
+                <div class="holidays-card-dates md:ml-5 w-full">
+                    <p-table [columns]="holidaysTableCols" [value]="countryHolidays" [scrollable]="true"
+                        scrollHeight="400px" [virtualScroll]="true" [virtualScrollItemSize]="46"
+                        *ngIf="countryHolidays.length > 0 else noHolidays">
+                        <ng-template pTemplate="header" let-columns>
+                            <tr>
+                                <th *ngFor="let col of columns" style="width: 20%;">
+                                    {{ col.header }}
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-columns="columns">
+                            <tr style="height:46px">
+                                <td *ngFor="let col of columns">
+                                    {{ rowData[col.field] }}
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #noHolidays>
+    <div class="p-4 h-full">
+        <div class="flex flex-column gap-5 align-items-center justify-content-center text-center h-full">
+            <h4 class="text-xl text-red-500">Sorry, at this moment no holidays can be displayed for this Country.</h4>
+            <h5 class="text-lg text-green-300">Please select a new one.</h5>
+        </div>
+    </div>
+</ng-template>

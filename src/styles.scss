@@ -1,12 +1,30 @@
+@import "primeng/resources/primeng.css";
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeflex/primeflex.scss";
+@import "primeicons/primeicons.css";
 @import "mixin.scss";
 
 :root {
-  --color-primary: #8294c4;
-  --color-secondary: #acb1d6;
-  --color-black: #02010a;
-  --color-bg: #dbdfea7b;
+  --color-primary: #d1c2fc;
+  --color-primary-light: #ded2ff;
+  --color-primary-dark: #947adb;
+  --color-primary-light-transparent: #ded2ffba;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-bg: #c2c2c2;
   --color-element: #ffead2;
   --color-border: #5c6682;
-  --color-white: #fff;
-  --color-black: #000;
+  --color-border-light: #8c8f97;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+  background-color: color(primary);
 }
